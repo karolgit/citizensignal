@@ -10,8 +10,19 @@ This repository now includes a Node-oriented TypeScript baseline with:
 - `tsconfig.json` for strict TypeScript compilation
 - `vitest.config.ts` for test execution
 - `src/` with a small application entry point
-- `tests/` with a sample test
+- `tests/` with administration workflow coverage
 - `config/.env.example` for checked-in environment defaults
+
+## Administration Foundation
+
+The repository also includes a base administration domain for:
+
+- segment-definition management
+- user and privilege-group administration
+- district source registration and classification
+- audit event capture for administrator actions
+
+Supporting design notes live in `docs/administration-architecture.md` and `docs/oci-terraform-alignment.md`.
 
 ## Getting Started
 
@@ -42,6 +53,6 @@ This repository now includes a Node-oriented TypeScript baseline with:
 ## Suggested Next Steps
 
 1. Run `npm install` to generate the lockfile and install the TypeScript toolchain.
-2. Replace the sample `src/app.ts` logic with the first real domain module.
-3. Expand `tests/` as the first services and workflows are added.
-4. Add architecture and setup notes to `docs/` as implementation begins.
+2. Extend the in-memory repositories to Oracle-backed implementations when the database integration layer is ready.
+3. Add API endpoints or UI flows on top of the administration services.
+4. Expand `tests/` as additional product workflows are added.
