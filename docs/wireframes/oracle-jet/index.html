@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CitizenSignal Oracle JET Wireframe</title>
+    <link
+      rel="stylesheet"
+      href="https://static.oracle.com/cdn/jet/v19.0.0/default/css/redwood/oj-redwood-min.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./css/app.css" type="text/css" />
+  </head>
+  <body id="globalBody" class="oj-web-applayout-body">
+    <div class="app-shell">
+      <header class="cs-header">
+        <div>
+          <div class="cs-eyebrow">Oracle JET Wireframe</div>
+          <h1 class="cs-title">CitizenSignal</h1>
+          <p class="cs-subtitle">Administrator and campaign manager prototype using in-memory data</p>
+        </div>
+        <div class="cs-header-actions">
+          <button class="cs-chip-button" data-bind="click: switchToAdministrator, css: { 'is-active': currentRole() === 'admin' }">
+            Administrator
+          </button>
+          <button class="cs-chip-button" data-bind="click: switchToManager, css: { 'is-active': currentRole() === 'manager' }">
+            Campaign Manager
+          </button>
+        </div>
+      </header>
+
+      <div class="cs-layout">
+        <aside class="cs-sidebar">
+          <div class="cs-sidebar-role" data-bind="text: activeRoleLabel"></div>
+          <nav class="cs-nav">
+            <button class="cs-nav-link" data-bind="click: function(){ goToScreen('admin-dashboard'); }, css: { 'is-active': currentScreen() === 'admin-dashboard' }">Admin Dashboard</button>
+            <button class="cs-nav-link" data-bind="click: function(){ goToScreen('manager-dashboard'); }, css: { 'is-active': currentScreen() === 'manager-dashboard' }">Campaign Dashboard</button>
+            <button class="cs-nav-link" data-bind="click: function(){ goToScreen('district-setup'); }, css: { 'is-active': currentScreen() === 'district-setup' }">District Setup</button>
+            <button class="cs-nav-link" data-bind="click: function(){ goToScreen('sources'); }, css: { 'is-active': currentScreen() === 'sources' }">Sources</button>
+          </nav>
+        </aside>
+
+        <main class="cs-main">
+          <section class="cs-screen" data-bind="css: { 'screen-hidden': currentScreen() !== 'admin-dashboard' }">
+            <div class="cs-hero">
+              <div class="cs-eyebrow">Administrator</div>
+              <h2>Control segments, access, and district intelligence quality</h2>
+              <p>Maintain reusable analysis definitions, assign screen access, and keep the source base clean for each district.</p>
+            </div>
+
+            <div class="cs-stat-grid">
+              <div class="cs-card cs-stat-card">
+                <h3>42 Active Users</h3>
+                <p>4 pending invitations</p>
+              </div>
+              <div class="cs-card cs-stat-card">
+                <h3>5 Segment Dimensions</h3>
+                <p>29 normalized values</p>
+              </div>
+              <div class="cs-card cs-stat-card">
+                <h3>18 District Sources</h3>
+                <p>3 need review</p>
+              </div>
+              <div class="cs-card cs-stat-card">
+                <h3>7 Audit Events</h3>
+                <p>1 high-priority impact</p>
+              </div>
+            </div>
+
+            <div class="cs-grid cs-grid-2">
+              <div class="cs-card">
+                <h3>Segment Definitions</h3>
+                <div data-bind="foreach: segmentDefinitions">
+                  <div class="cs-list-item">
+                    <strong data-bind="text: dimensionKey"></strong>
+                    <div class="cs-muted" data-bind="text: values.join(', ')"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-card">
+                <h3>User Access Matrix</h3>
+                <div data-bind="foreach: users">
+                  <div class="cs-list-item">
+                    <div class="cs-user-row">
+                      <oj-avatar size="sm" initials="[[name.substring(0,1)]]"></oj-avatar>
+                      <div>
+                        <strong data-bind="text: name"></strong>
+                        <div class="cs-muted" data-bind="text: roleLabel"></div>
+                      </div>
+                    </div>
+                    <div class="cs-muted" data-bind="text: screens.join(' • ')"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="cs-screen" data-bind="css: { 'screen-hidden': currentScreen() !== 'manager-dashboard' }">
+            <div class="cs-hero">
+              <div class="cs-eyebrow">Campaign Manager</div>
+              <h2 data-bind="text: district.districtName + ' issue pulse'"></h2>
+              <p>Monitor the strongest issues, connect them to segments, and move quickly into events and outreach.</p>
+            </div>
+
+            <div class="cs-stat-grid">
+              <div class="cs-card cs-stat-card">
+                <h3>Top Issue</h3>
+                <p>School budget pressure</p>
+              </div>
+              <div class="cs-card cs-stat-card">
+                <h3>236 Projected</h3>
+                <p>Town hall attendance</p>
+              </div>
+              <div class="cs-card cs-stat-card">
+                <h3>8 Active Sources</h3>
+                <p>3 hyperlocal leaders</p>
+              </div>
+              <div class="cs-card cs-stat-card">
+                <h3>4 Saved Segments</h3>
+                <p>Ready for outreach</p>
+              </div>
+            </div>
+
+            <div class="cs-grid cs-grid-3">
+              <div class="cs-card">
+                <h3>Issue Feed</h3>
+                <div data-bind="foreach: issues">
+                  <div class="cs-list-item">
+                    <strong data-bind="text: title"></strong>
+                    <div class="cs-muted" data-bind="text: trendDelta7d + ' • ' + reach"></div>
+                    <div class="cs-tag-row" data-bind="foreach: segments">
+                      <span class="cs-tag" data-bind="text: $data"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-card">
+                <h3>Audience Segments</h3>
+                <div data-bind="foreach: audienceSegments">
+                  <div class="cs-list-item">
+                    <strong data-bind="text: name"></strong>
+                    <div class="cs-muted" data-bind="text: estimatedAudienceSize + ' estimated audience'"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-card">
+                <h3>Events</h3>
+                <div data-bind="foreach: events">
+                  <div class="cs-list-item">
+                    <strong data-bind="text: title"></strong>
+                    <div class="cs-muted" data-bind="text: startAt"></div>
+                    <div class="cs-muted" data-bind="text: projectedAttendance + ' projected attendees'"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="cs-screen" data-bind="css: { 'screen-hidden': currentScreen() !== 'district-setup' }">
+            <div class="cs-hero">
+              <div class="cs-eyebrow">District Setup</div>
+              <h2>Configure district geography and operating notes</h2>
+              <p>Built with Oracle JET form layout patterns so the same form works well on desktop and mobile.</p>
+            </div>
+
+            <div class="cs-card">
+              <oj-form-layout class="oj-formlayout-full-width" max-columns="2" label-edge="start">
+                <oj-input-text label-hint="State" value="[[district.state]]"></oj-input-text>
+                <oj-input-text label-hint="Office Type" value="[[district.officeType]]"></oj-input-text>
+                <oj-input-text label-hint="District Name" value="[[district.districtName]]"></oj-input-text>
+                <oj-input-text label-hint="District Number" value="[[district.districtNumber]]"></oj-input-text>
+                <oj-input-text label-hint="Municipalities" value="[[district.municipalities.join(', ')]]"></oj-input-text>
+                <oj-input-text label-hint="ZIP Codes" value="[[district.zipCodes.join(', ')]]"></oj-input-text>
+                <oj-text-area label-hint="District Notes" rows="5" value="[[districtNotes]]"></oj-text-area>
+              </oj-form-layout>
+              <div class="cs-action-row">
+                <oj-button on-oj-action="[[saveDistrict]]">Save District</oj-button>
+                <oj-button chroming="outlined" on-oj-action="[[duplicateDistrict]]">Duplicate Setup</oj-button>
+              </div>
+            </div>
+          </section>
+
+          <section class="cs-screen" data-bind="css: { 'screen-hidden': currentScreen() !== 'sources' }">
+            <div class="cs-hero">
+              <div class="cs-eyebrow">Sources</div>
+              <h2>Review district source coverage and confidence</h2>
+              <p>Hyperlocal and regional sources are shown together so administrators and campaign managers can see the district information mix.</p>
+            </div>
+
+            <div class="cs-grid cs-grid-2">
+              <div class="cs-card">
+                <h3>Source Filters</h3>
+                <oj-form-layout class="oj-formlayout-full-width" max-columns="2" label-edge="start">
+                  <oj-input-text label-hint="District" value="[[district.districtName]]"></oj-input-text>
+                  <oj-input-text label-hint="Status Filter" value="All statuses"></oj-input-text>
+                  <oj-input-text label-hint="Priority Filter" value="All priorities"></oj-input-text>
+                  <oj-input-text label-hint="Source Type" value="All source types"></oj-input-text>
+                </oj-form-layout>
+                <div class="cs-action-row">
+                  <oj-button on-oj-action="[[applySourceFilters]]">Apply Filters</oj-button>
+                  <oj-button chroming="outlined" on-oj-action="[[addSource]]">Add Source</oj-button>
+                </div>
+              </div>
+              <div class="cs-card">
+                <h3>Review Highlights</h3>
+                <div class="cs-list-item">
+                  <strong>Priority Collection</strong>
+                  <div class="cs-muted">Kennebunk Post, Weekly Sentinel, Kennebunk Currents, Village Facebook Group</div>
+                </div>
+                <div class="cs-list-item">
+                  <strong>Needs Review</strong>
+                  <div class="cs-muted">Weekly Sentinel, Village Facebook Group</div>
+                </div>
+                <div class="cs-list-item">
+                  <strong>Regional Support</strong>
+                  <div class="cs-muted">Portland Press Herald, Times Record</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-card">
+              <h3>Source Registry</h3>
+              <div data-bind="foreach: sources">
+                <div class="cs-list-item">
+                  <div class="cs-row-between">
+                    <div>
+                      <strong data-bind="text: name"></strong>
+                      <div class="cs-muted" data-bind="text: sourceType + ' • ' + coverage"></div>
+                    </div>
+                    <div class="cs-muted" data-bind="text: 'Confidence ' + Math.round(confidenceScore * 100) + '%'"></div>
+                  </div>
+                  <div class="cs-tag-row">
+                    <span class="cs-tag" data-bind="text: priority"></span>
+                    <span class="cs-tag" data-bind="text: status, css: 'is-' + status"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://static.oracle.com/cdn/jet/v19.0.0/3rdparty/require/require.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

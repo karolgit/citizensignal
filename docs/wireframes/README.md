@@ -9,6 +9,7 @@ This directory contains a draw.io prototype for two primary user types:
 
 - `citizensignal-admin-campaign-prototype.drawio`: responsive wireframe prototype with desktop and mobile pages
 - `clickable-prototype.html`: clickable browser prototype
+- `oracle-jet/`: Oracle JET-based wireframe prototype with in-memory data
 - `prototype-styles.css`: styling for the clickable prototype
 - `prototype-app.js`: local interaction and screen rendering logic
 - `prototype-sample-data.json`: sample content used by the prototype
@@ -45,3 +46,5 @@ The mobile pages collapse the same content into:
 Open the `.drawio` file in diagrams.net or draw.io to edit the prototype.
 
 Open `clickable-prototype.html` directly in a browser to use the clickable prototype.
+
+Open `oracle-jet/index.html` to review the Oracle JET-based prototype.
