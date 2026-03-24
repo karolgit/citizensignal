@@ -9,11 +9,15 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "db:apply-schema": "node scripts/db/apply-schema.mjs",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "oracledb": "^6.9.0"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

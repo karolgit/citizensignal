@@ -1,0 +1,17 @@
+tenancy_ocid                    = "ocid1.tenancy.oc1..example"
+user_ocid                       = "ocid1.user.oc1..example"
+fingerprint                     = "12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef"
+private_key_path                = "~/.oci/oci_api_key.pem"
+region                          = "us-ashburn-1"
+availability_domain             = "kIdk:US-ASHBURN-AD-1"
+workload_parent_compartment_ocid = "ocid1.compartment.oc1..example"
+project_prefix                  = "citizensignal"
+ssh_public_key                  = "ssh-rsa AAAAB3Nza... replace-me"
+app_image_ocid                  = "ocid1.image.oc1..example"
+assign_public_ip_to_app         = false
+admin_access_cidr               = "203.0.113.10/32"
+application_ingress_cidr        = "203.0.113.10/32"
+app_repo_url                    = "https://github.com/example/citizensignal.git"
+autonomous_database_admin_password = "ReplaceWithStrongPassword123!"
+schema_apply_enabled            = false
+schema_apply_connect_string     = ""

@@ -1,0 +1,298 @@
+{
+  "prototypeVersion": "2026-03-24",
+  "theme": {
+    "name": "Apple Liquid Glass Inspired",
+    "tokens": {
+      "backgroundTop": "#EAF3FF",
+      "backgroundBottom": "#D4E5FF",
+      "glassCardFill": "#FFFFFF",
+      "glassCardOpacity": 0.72,
+      "glassCardGradient": "#CFE2FF",
+      "glassStroke": "#D9E3F0",
+      "primaryText": "#183153",
+      "secondaryText": "#29476B"
+    }
+  },
+  "district": {
+    "districtId": "district_me_house_34",
+    "state": "Maine",
+    "officeType": "State House",
+    "districtName": "Maine House District 34",
+    "municipalities": ["Arundel", "Kennebunk", "Kennebunkport"],
+    "zipCodes": ["04043", "04046"]
+  },
+  "users": [
+    {
+      "userId": "user_admin_1",
+      "name": "Admin User",
+      "email": "admin@citizensignal.local",
+      "roleLabel": "Platform Administrator",
+      "screens": ["Users", "Privilege Groups", "Segment Definitions", "Source Registry", "Audit Trail"]
+    },
+    {
+      "userId": "user_manager_1",
+      "name": "Morgan Hale",
+      "email": "morgan.hale@citizensignal.local",
+      "roleLabel": "Campaign Manager",
+      "screens": ["District Dashboard", "Briefings", "Events", "Audience Segments", "Outreach Drafts"]
+    },
+    {
+      "userId": "user_comms_1",
+      "name": "Priya Shah",
+      "email": "priya.shah@citizensignal.local",
+      "roleLabel": "Communications Coordinator",
+      "screens": ["Audience Segments", "Outreach Drafts", "Briefings"]
+    },
+    {
+      "userId": "user_analyst_1",
+      "name": "Eli Turner",
+      "email": "eli.turner@citizensignal.local",
+      "roleLabel": "Campaign Analyst",
+      "screens": ["Issue Feed", "Trending Topics", "Sources", "Discussions"]
+    }
+  ],
+  "loginProfiles": [
+    {
+      "label": "Administrator",
+      "userId": "user_admin_1",
+      "landingScreen": "admin-dashboard"
+    },
+    {
+      "label": "Campaign Manager",
+      "userId": "user_manager_1",
+      "landingScreen": "manager-dashboard"
+    }
+  ],
+  "privilegeGroups": [
+    {
+      "privilegeGroupId": "pg_platform_admin",
+      "name": "Platform Administrator",
+      "permissions": [
+        "district.manage",
+        "source_registry.manage",
+        "segment_definition.manage",
+        "audience_records.manage",
+        "user_administration.manage"
+      ]
+    },
+    {
+      "privilegeGroupId": "pg_campaign_manager",
+      "name": "Campaign Manager",
+      "permissions": [
+        "dashboard.view",
+        "briefings.view",
+        "events.manage",
+        "segments.use",
+        "outreach.generate"
+      ]
+    }
+  ],
+  "segmentDefinitions": [
+    {
+      "dimensionKey": "age_group",
+      "values": ["18-29", "30-44", "45-64", "65+"]
+    },
+    {
+      "dimensionKey": "income_group",
+      "values": ["Under 40k", "40k-80k", "80k-150k", "150k+"]
+    },
+    {
+      "dimensionKey": "political_viewpoint",
+      "values": ["Conservative", "Moderate", "Progressive", "Independent"]
+    },
+    {
+      "dimensionKey": "sex_or_gender",
+      "values": ["Female", "Male", "Nonbinary", "Prefer not to say"]
+    },
+    {
+      "dimensionKey": "occupation_group",
+      "values": [
+        "White Collar Professional",
+        "Blue Collar Worker",
+        "Stay-at-Home Parent",
+        "Teacher",
+        "Healthcare Worker",
+        "Small Business Owner",
+        "Retiree"
+      ]
+    }
+  ],
+  "districtSetup": {
+    "workspaceName": "CitizenSignal - Maine District Workspace",
+    "districtProfiles": [
+      {
+        "districtId": "district_me_house_34",
+        "state": "Maine",
+        "officeType": "State House",
+        "districtName": "Maine House District 34",
+        "districtNumber": "34",
+        "municipalities": ["Arundel", "Kennebunk", "Kennebunkport"],
+        "zipCodes": ["04043", "04046"],
+        "notes": "Focus on shoreline resilience, school budget pressure, and local tax affordability."
+      },
+      {
+        "districtId": "district_me_house_35",
+        "state": "Maine",
+        "officeType": "State House",
+        "districtName": "Maine House District 35",
+        "districtNumber": "35",
+        "municipalities": ["Biddeford"],
+        "zipCodes": ["04005"],
+        "notes": "Companion district profile shown for multi-district admin workflows."
+      }
+    ]
+  },
+  "audienceSegments": [
+    {
+      "segmentId": "aud_segment_teachers",
+      "name": "District Teachers",
+      "estimatedAudienceSize": 180,
+      "tags": ["education", "community-leaders"]
+    },
+    {
+      "segmentId": "aud_segment_homeowners",
+      "name": "Persuadable Homeowners",
+      "estimatedAudienceSize": 420,
+      "tags": ["taxes", "turnout"]
+    },
+    {
+      "segmentId": "aud_segment_healthcare",
+      "name": "Healthcare Workers",
+      "estimatedAudienceSize": 96,
+      "tags": ["workforce", "community-trust"]
+    },
+    {
+      "segmentId": "aud_segment_retirees",
+      "name": "Retirees - Property Tax Focus",
+      "estimatedAudienceSize": 310,
+      "tags": ["property-taxes", "mail-voters"]
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "source_kennebunk_post",
+      "name": "Kennebunk Post",
+      "sourceType": "local_newspaper",
+      "coverage": ["Kennebunk", "Kennebunkport"],
+      "priority": "high",
+      "status": "active",
+      "confidenceScore": 0.78
+    },
+    {
+      "sourceId": "source_weekly_sentinel",
+      "name": "The Weekly Sentinel",
+      "sourceType": "local_newspaper",
+      "coverage": ["Arundel", "Kennebunk", "Kennebunkport"],
+      "priority": "high",
+      "status": "review",
+      "confidenceScore": 0.61
+    },
+    {
+      "sourceId": "source_kennebunk_currents",
+      "name": "Kennebunk Currents",
+      "sourceType": "town_newsletter",
+      "coverage": ["Kennebunk"],
+      "priority": "high",
+      "status": "active",
+      "confidenceScore": 0.86
+    },
+    {
+      "sourceId": "source_village_fb",
+      "name": "The Village: Arundel, Kennebunk and Kennebunkport",
+      "sourceType": "community_discussion",
+      "coverage": ["Arundel", "Kennebunk", "Kennebunkport"],
+      "priority": "monitor",
+      "status": "active",
+      "confidenceScore": 0.67
+    },
+    {
+      "sourceId": "source_press_herald",
+      "name": "Portland Press Herald",
+      "sourceType": "regional_newspaper",
+      "coverage": ["Cumberland County", "York County"],
+      "priority": "regional",
+      "status": "active",
+      "confidenceScore": 0.81
+    },
+    {
+      "sourceId": "source_times_record",
+      "name": "Times Record",
+      "sourceType": "regional_newspaper",
+      "coverage": ["Midcoast", "Southern Maine"],
+      "priority": "regional",
+      "status": "active",
+      "confidenceScore": 0.74
+    }
+  ],
+  "sourceCollections": {
+    "district34Priority": [
+      "Kennebunk Post",
+      "The Weekly Sentinel",
+      "Kennebunk Currents",
+      "The Village: Arundel, Kennebunk and Kennebunkport",
+      "Portland Press Herald",
+      "Times Record"
+    ],
+    "needsReview": [
+      "The Weekly Sentinel",
+      "The Village: Arundel, Kennebunk and Kennebunkport"
+    ]
+  },
+  "issues": [
+    {
+      "issueId": "issue_school_budget",
+      "title": "School budget pressure",
+      "trendDelta7d": 38,
+      "reach": "broad concern",
+      "primarySegments": ["District Teachers", "Persuadable Homeowners"]
+    },
+    {
+      "issueId": "issue_coastal_flooding",
+      "title": "Coastal flooding preparation",
+      "trendDelta7d": 24,
+      "reach": "growing",
+      "primarySegments": ["Retirees - Property Tax Focus", "Healthcare Workers"]
+    },
+    {
+      "issueId": "issue_property_taxes",
+      "title": "Property tax affordability",
+      "trendDelta7d": 17,
+      "reach": "mixed framing",
+      "primarySegments": ["Persuadable Homeowners", "Retirees - Property Tax Focus"]
+    }
+  ],
+  "events": [
+    {
+      "eventId": "event_town_hall_1",
+      "title": "Town Hall - Kennebunk",
+      "startAt": "2026-04-02T18:30:00-04:00",
+      "projectedAttendance": 236,
+      "linkedSegments": ["District Teachers", "Persuadable Homeowners"]
+    },
+    {
+      "eventId": "event_canvass_1",
+      "title": "Volunteer Canvass Launch",
+      "startAt": "2026-04-05T09:00:00-04:00",
+      "projectedAttendance": 58,
+      "linkedSegments": ["District Teachers"]
+    }
+  ],
+  "auditTimeline": [
+    "09:42 AM | Segment value retired: occupation_teacher",
+    "10:05 AM | User invited: field.director@citizensignal.local",
+    "10:22 AM | Source confidence updated: Kennebunk Currents",
+    "11:10 AM | Privilege group change: Campaign Analyst"
+  ],
+  "uiHighlights": {
+    "admin": {
+      "pendingApprovals": 3,
+      "usersActive": 42,
+      "segmentValues": 29
+    },
+    "campaignManager": {
+      "topIssue": "School budget pressure",
+      "eventProjectedAttendance": 236,
+      "sourceSpread": 8
+    }
+  ]
+}

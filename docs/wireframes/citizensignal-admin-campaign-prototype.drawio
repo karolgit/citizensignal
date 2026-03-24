@@ -1,0 +1,154 @@
+<mxfile host="app.diagrams.net" modified="2026-03-24T16:30:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="admin-desktop" name="Administrator Desktop">
+    <mxGraphModel dx="1500" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF3FF;gradientColor=#D4E5FF;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1440" height="1024" as="geometry" />
+        </mxCell>
+        <mxCell id="header1" value="CitizenSignal Admin Workspace" style="rounded=1;arcSize=18;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=26;fontStyle=1;fontColor=#183153;align=left;spacingLeft=24;" vertex="1" parent="1">
+          <mxGeometry x="24" y="24" width="1392" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="sidebar1" value="Sidebar&#xa;&#xa;Dashboard&#xa;Users&#xa;Privilege Groups&#xa;Segment Definitions&#xa;District Sources&#xa;Audit Trail&#xa;Settings" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=66;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#29476B;align=left;spacing=18;spacingTop=24;" vertex="1" parent="1">
+          <mxGeometry x="24" y="116" width="240" height="860" as="geometry" />
+        </mxCell>
+        <mxCell id="hero1" value="Administration Overview&#xa;Responsive glass cards adapt from 4-column desktop to stacked mobile sections." style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=22;fontStyle=1;fontColor=#183153;align=left;spacing=20;" vertex="1" parent="1">
+          <mxGeometry x="284" y="116" width="1132" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="kpiUsers" value="Users&#xa;42 active&#xa;4 pending invites" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="284" y="248" width="260" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="kpiSegments" value="Segments&#xa;5 dimensions&#xa;29 allowed values" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="568" y="248" width="260" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="kpiSources" value="District Sources&#xa;18 tracked&#xa;3 need review" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="852" y="248" width="260" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="kpiAudit" value="Audit Alerts&#xa;7 changes today&#xa;1 high-priority drift" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="1136" y="248" width="280" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="segmentsPanel" value="Segment Definitions&#xa;&#xa;Age Group | 18-29, 30-44, 45-64, 65+&#xa;Income Group | Under 40k, 40k-80k, 80k-150k, 150k+&#xa;Political Viewpoint | Conservative, Moderate, Progressive, Independent&#xa;Sex/Gender | Female, Male, Nonbinary, Prefer not to say&#xa;Occupation Group | White Collar, Blue Collar, Stay-at-Home Parent, Teacher, Healthcare Worker..." style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="284" y="392" width="540" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="usersPanel" value="User &amp; Privilege Matrix&#xa;&#xa;Admin User | Platform Administrator | All admin screens&#xa;Morgan Hale | Campaign Manager | Dashboard, Briefings, Events&#xa;Priya Shah | Communications | Outreach Drafts, Segments&#xa;Eli Turner | Analyst | Issues, Sources, Discussions&#xa;&#xa;Actions: Invite User | Deactivate | Reset Access | View Audit" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="848" y="392" width="568" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="sourcesPanel" value="District Source Registry&#xa;&#xa;Kennebunk Post | Hyperlocal | Active&#xa;The Weekly Sentinel | Hyperlocal | Review leaning&#xa;Kennebunk Currents | Newsletter | Active&#xa;The Village: Arundel, Kennebunk and Kennebunkport | Facebook | Monitor&#xa;Portland Press Herald | Regional | Active&#xa;&#xa;Filters: District | Source Type | Priority | Confidence | Needs Review" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="284" y="696" width="760" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="auditPanel" value="Audit Timeline&#xa;&#xa;09:42 AM | Segment value retired: occupation_teacher&#xa;10:05 AM | User invited: field.director@citizensignal.local&#xa;10:22 AM | Source confidence updated: Kennebunk Currents&#xa;11:10 AM | Privilege group change: Campaign Analyst&#xa;&#xa;Sticky action rail: Review impacts | Approve change | Export log" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="1064" y="696" width="352" height="280" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="manager-desktop" name="Campaign Manager Desktop">
+    <mxGraphModel dx="1500" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF3FF;gradientColor=#D4E5FF;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1440" height="1024" as="geometry" />
+        </mxCell>
+        <mxCell id="header2" value="CitizenSignal Campaign Manager Workspace" style="rounded=1;arcSize=18;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=26;fontStyle=1;fontColor=#183153;align=left;spacingLeft=24;" vertex="1" parent="1">
+          <mxGeometry x="24" y="24" width="1392" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="sidebar2" value="Sidebar&#xa;&#xa;District Dashboard&#xa;Briefings&#xa;Trending Topics&#xa;Events&#xa;Audience Segments&#xa;Outreach Drafts&#xa;Discussions" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=66;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#29476B;align=left;spacing=18;spacingTop=24;" vertex="1" parent="1">
+          <mxGeometry x="24" y="116" width="240" height="860" as="geometry" />
+        </mxCell>
+        <mxCell id="summary2" value="Maine House District 34&#xa;Pulse: High engagement around schools, shoreline resilience, and property taxes." style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=22;fontStyle=1;fontColor=#183153;align=left;spacing=20;" vertex="1" parent="1">
+          <mxGeometry x="284" y="116" width="1132" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="trend1" value="Top Issue&#xa;School budget pressure&#xa;+38% this week" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="284" y="248" width="260" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="trend2" value="Volunteer Readiness&#xa;236 likely attendees&#xa;14% above target" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="568" y="248" width="260" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="trend3" value="Source Spread&#xa;8 active outlets&#xa;3 hyperlocal leaders" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="852" y="248" width="260" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="trend4" value="Next Event&#xa;Town hall in Kennebunk&#xa;Thursday 6:30 PM" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=20;fontStyle=1;fontColor=#183153;align=left;spacing=16;" vertex="1" parent="1">
+          <mxGeometry x="1136" y="248" width="280" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="issuesPanel2" value="Issue Feed &amp; Briefing Snapshot&#xa;&#xa;1. School budget pressure | broad concern | teacher + parent segments&#xa;2. Coastal flooding prep | rising | high in Kennebunkport&#xa;3. Property tax affordability | mixed framing | donor + retiree audiences&#xa;&#xa;Primary actions: Open briefing | Compare viewpoints | Generate talking points" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="284" y="392" width="620" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="segmentsPanel2" value="Audience Segments&#xa;&#xa;District Teachers | 180 estimated&#xa;Persuadable Homeowners | 420 estimated&#xa;Healthcare Workers | 96 estimated&#xa;Retirees, Property Tax Focus | 310 estimated&#xa;&#xa;Quick actions: Clone segment | Draft outreach | Link to event" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="924" y="392" width="492" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="eventsPanel2" value="Events &amp; Turnout&#xa;&#xa;Town Hall - Kennebunk | 236 projected | link to teachers + homeowners&#xa;Volunteer Canvass Launch | 58 projected | link to volunteers&#xa;Fundraiser Reception | 44 projected | link to donors&#xa;&#xa;Next CTA: generate SMS + email variants" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="284" y="696" width="540" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="sourcesPanel2" value="Source Coverage&#xa;&#xa;Kennebunk Post | active&#xa;The Weekly Sentinel | active&#xa;Kennebunk Currents | active&#xa;Portland Press Herald | active&#xa;Times Record | monitoring&#xa;&#xa;Map/filter affordance here for responsive card stack" style="rounded=1;arcSize=24;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontColor=#183153;align=left;spacing=18;" vertex="1" parent="1">
+          <mxGeometry x="848" y="696" width="568" height="280" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="admin-mobile" name="Administrator Mobile">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="phoneFrame1" value="" style="rounded=1;arcSize=32;whiteSpace=wrap;html=1;fillColor=#0F1724;strokeColor=#0F1724;" vertex="1" parent="1">
+          <mxGeometry x="120" y="20" width="390" height="844" as="geometry" />
+        </mxCell>
+        <mxCell id="screen1" value="" style="rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor=#EAF3FF;gradientColor=#D4E5FF;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="136" y="38" width="358" height="808" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileHeader1" value="Admin" style="rounded=1;arcSize=18;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=24;fontStyle=1;fontColor=#183153;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="152" y="58" width="326" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileCard1" value="Today&#xa;3 source reviews&#xa;2 user changes&#xa;1 segment impact" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontStyle=1;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="134" width="326" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileCard2" value="Segment Definitions&#xa;&#xa;Occupation Group&#xa;Political Viewpoint&#xa;Age Group&#xa;&#xa;Tap to edit values" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=17;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="262" width="326" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileCard3" value="Users &amp; Access&#xa;&#xa;Admin User&#xa;Morgan Hale&#xa;Priya Shah&#xa;&#xa;Primary action: Invite User" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=17;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="450" width="326" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileCard4" value="Source Queue&#xa;&#xa;Weekly Sentinel - review leaning&#xa;Village FB Group - confirm priority&#xa;Kennebunk Currents - update confidence" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=17;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="628" width="326" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileNav1" value="Dashboard | Users | Segments | Sources" style="rounded=1;arcSize=18;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=15;fontColor=#183153;" vertex="1" parent="1">
+          <mxGeometry x="152" y="790" width="326" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="manager-mobile" name="Campaign Manager Mobile">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="phoneFrame2" value="" style="rounded=1;arcSize=32;whiteSpace=wrap;html=1;fillColor=#0F1724;strokeColor=#0F1724;" vertex="1" parent="1">
+          <mxGeometry x="120" y="20" width="390" height="844" as="geometry" />
+        </mxCell>
+        <mxCell id="screen2" value="" style="rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor=#EAF3FF;gradientColor=#D4E5FF;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="136" y="38" width="358" height="808" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileHeader2" value="District 34" style="rounded=1;arcSize=18;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=24;fontStyle=1;fontColor=#183153;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="152" y="58" width="326" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileManagerCard1" value="Issue Pulse&#xa;School budget pressure&#xa;+38% in 7 days" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DDEBFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=18;fontStyle=1;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="134" width="326" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileManagerCard2" value="Top Issues&#xa;&#xa;1. Schools&#xa;2. Coastal flooding&#xa;3. Property taxes&#xa;&#xa;Tap to open briefing" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=17;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="262" width="326" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileManagerCard3" value="Segments&#xa;&#xa;District Teachers&#xa;Persuadable Homeowners&#xa;Retirees - Tax Focus" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=17;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="450" width="326" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileManagerCard4" value="Next Event&#xa;&#xa;Town Hall - Kennebunk&#xa;Thursday 6:30 PM&#xa;236 projected attendees&#xa;&#xa;Primary action: Draft outreach" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#CFE2FF;opacity=70;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=17;fontColor=#183153;align=left;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="152" y="608" width="326" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileNav2" value="Home | Briefings | Events | Drafts" style="rounded=1;arcSize=18;whiteSpace=wrap;html=1;fillColor=#FFFFFF;gradientColor=#DCEAFF;opacity=72;strokeColor=#D9E3F0;glass=1;shadow=1;fontSize=15;fontColor=#183153;" vertex="1" parent="1">
+          <mxGeometry x="152" y="790" width="326" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

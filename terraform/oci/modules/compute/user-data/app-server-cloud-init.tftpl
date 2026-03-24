@@ -1,0 +1,15 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - git
+
+runcmd:
+  - mkdir -p ${app_directory}
+  - chown opc:opc ${app_directory}
+%{ if app_repo_url != "" ~}
+  - su - opc -c "git clone ${app_repo_url} ${app_directory}/repo || true"
+%{ endif ~}
+
+final_message: "CitizenSignal application VM bootstrap completed."

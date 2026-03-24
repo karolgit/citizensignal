@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CitizenSignal Clickable Prototype</title>
+    <link rel="stylesheet" href="./prototype-styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="ambient ambient-a"></div>
+      <div class="ambient ambient-b"></div>
+      <header class="topbar glass">
+        <div>
+          <div class="eyebrow">Clickable Prototype</div>
+          <h1>CitizenSignal</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="glass-button" data-role-switch="admin">Administrator</button>
+          <button class="glass-button" data-role-switch="manager">Campaign Manager</button>
+          <button class="glass-button subtle" id="logoutButton">Log Out</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <aside class="sidebar glass">
+          <div class="sidebar-role" id="sidebarRole">Choose a role</div>
+          <nav id="navLinks" class="nav-links"></nav>
+        </aside>
+
+        <section id="screenHost" class="screen-host"></section>
+      </main>
+    </div>
+
+    <script type="module" src="./prototype-app.js"></script>
+  </body>
+</html>

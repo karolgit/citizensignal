@@ -26,6 +26,8 @@ When proposing infrastructure, environment layout, identity boundaries, networki
 - avoid ad hoc cloud setup that conflicts with CIS landing zone guardrails
 - separate application implementation concerns from tenancy, compartment, network, and governance concerns
 
+Assume the OCI Landing Zones tenancy foundation already exists. The work produced by this prompt should create the workload-layer infrastructure for CitizenSignal under a landing-zone-managed parent compartment rather than attempting to recreate the entire landing zone bootstrap.
+
 ## Core Goals
 
 Implement the database-oriented domain model and administrator workflows needed for:
@@ -154,6 +156,12 @@ Be thoughtful about document boundaries:
 - reference large or high-volume records separately
 - preserve auditability and explainability
 
+In addition to the TypeScript domain model, create the Oracle database schema assets required to store these JSON documents in Oracle Autonomous Database. Include:
+
+- SQL files for creating the base document tables
+- indexes appropriate for the administrator workflows
+- a repeatable schema-application mechanism that can be run from Node.js
+
 ## Implementation Expectations
 
 If the repository does not yet contain a full application framework, create a clean foundation using TypeScript modules and clear boundaries that can be integrated into a future API or UI.
@@ -172,16 +180,24 @@ Implement the following:
 6. tests covering the core administrator workflows
 7. documentation describing the data model and administration architecture
 
-Also produce an infrastructure-oriented design note that identifies the Oracle Cloud resources and Terraform modules that would likely be needed later for:
+Also implement the infrastructure and operational foundation, not just a design note. Add:
 
-- application hosting
-- JSON database connectivity
-- IAM integration
-- secrets management
-- logging and audit
-- networking and compartment placement
+1. Terraform for Oracle Cloud Infrastructure
+2. a modular Terraform layout with:
+   - `compartments`
+   - `network`
+   - `database`
+   - `compute`
+3. Terraform for creating:
+   - security, appdev, database, and network compartments
+   - the VCN, subnets, gateways, route tables, and network security groups needed by the application
+   - the Oracle Autonomous Database
+   - the virtual machine resources needed to run the application
+   - security support resources such as Vault or key-management primitives when appropriate
+4. Oracle database schema application support, ideally through a Node.js script and optionally with a Terraform hook for schema application when explicitly enabled
+5. a runbook that explains how to provision OCI resources, apply the schema, deploy the application, and run the application
 
-This note should stay at the planning and architecture level unless Terraform code is explicitly requested.
+The Terraform should be organized as a workload stack layered on top of an OCI Landing Zones managed tenancy, with the root Terraform wiring together the individual modules.
 
 ## Functional Requirements to Enforce
 
@@ -194,6 +210,10 @@ Your implementation must reflect these behaviors:
 - segment definition changes should identify saved audience segments that may be affected
 - privilege groups control screen-level or workflow-level access in a way that can expand later
 - source records support district-specific relevance and coverage metadata
+- the Oracle-backed implementation can replace the in-memory repository layer without rewriting the service layer
+- the database schema can be applied repeatably
+- the Terraform creates workload-layer OCI resources in a way that is consistent with CIS-oriented landing zone boundaries
+- the Terraform module boundaries are clear enough that network, database, compute, and compartment logic can evolve independently
 
 ## Technical Constraints
 
@@ -202,7 +222,10 @@ Your implementation must reflect these behaviors:
 - Prefer clear domain names over generic helper abstractions
 - Do not introduce unnecessary infrastructure if the repo does not support it yet
 - Keep the application code ready to integrate with future Oracle Cloud deployment components without coupling the domain layer directly to OCI SDK calls
-- If infrastructure examples are included, express them as Terraform-oriented recommendations rather than manual console steps
+- Use the `oracledb` Node.js driver for the Oracle Autonomous Database integration layer
+- Keep Oracle persistence behind repository interfaces so the in-memory and Oracle-backed implementations are swappable
+- Express infrastructure as Terraform code, not manual console steps
+- Keep Terraform root orchestration thin and place resource logic inside focused modules
 - Add concise comments only where logic is not self-evident
 - Keep secrets and real credentials out of the repository
 
@@ -213,9 +236,13 @@ Produce:
 1. the data model implementation
 2. administrator domain services
 3. repository layer interfaces and starter implementations
-4. tests for the administration flows
-5. a short technical design document summarizing the architecture and document model
-6. a short Oracle Cloud and Terraform deployment alignment note describing how this foundation would fit into an OCI Landing Zones based environment
+4. an Oracle-backed Node.js integration layer for Oracle Autonomous Database
+5. Oracle schema SQL and a schema application script
+6. Terraform for OCI infrastructure with separate `compartments`, `network`, `database`, and `compute` modules
+7. tests for the administration flows
+8. a short technical design document summarizing the architecture and document model
+9. a short Oracle Cloud and Terraform deployment alignment note describing how this foundation would fit into an OCI Landing Zones based environment
+10. a runbook for provisioning OCI resources, deploying the application, and running the application
 
 ## Output Format
 
@@ -227,3 +254,5 @@ When you respond:
 4. identify follow-up work that should come next
 
 If the repository lacks a database integration layer, do not stop. Implement the domain and repository foundation in a way that is immediately usable and easy to swap to Oracle Autonomous AI JSON Database later.
+
+If the repository lacks existing OCI Terraform, do not stop. Add the workload Terraform foundation in a modular way that can be validated and extended later.

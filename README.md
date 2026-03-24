@@ -24,12 +24,24 @@ The repository also includes a base administration domain for:
 
 Supporting design notes live in `docs/administration-architecture.md` and `docs/oci-terraform-alignment.md`.
 
+## OCI Infrastructure
+
+The repository now includes Oracle Cloud Infrastructure assets for a landing-zone-aligned workload deployment:
+
+- Terraform root in `terraform/oci`
+- Terraform modules in `terraform/oci/modules`
+- Oracle JSON document schema in `database/schema`
+- Node.js schema application script in `scripts/db/apply-schema.mjs`
+- Oracle Autonomous Database connection and repository layer in `src/infrastructure/oracle`
+- deployment runbook in `docs/runbooks/oci-deployment-runbook.md`
+
 ## Getting Started
 
 1. Install dependencies with `npm install`.
 2. Start the development entry point with `npm run dev`.
 3. Run the test suite with `npm test`.
 4. Build the project with `npm run build`.
+5. Apply the Oracle schema with `npm run db:apply-schema` after database connectivity is configured.
 
 ## Repository Layout
 
@@ -53,6 +65,6 @@ Supporting design notes live in `docs/administration-architecture.md` and `docs/
 ## Suggested Next Steps
 
 1. Run `npm install` to generate the lockfile and install the TypeScript toolchain.
-2. Extend the in-memory repositories to Oracle-backed implementations when the database integration layer is ready.
-3. Add API endpoints or UI flows on top of the administration services.
-4. Expand `tests/` as additional product workflows are added.
+2. Provision OCI resources from `terraform/oci` in a landing-zone-managed parent compartment.
+3. Wire the administration services to the Oracle-backed repositories.
+4. Add API endpoints or UI flows on top of the administration services.
