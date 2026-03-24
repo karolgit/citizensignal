@@ -47,6 +47,10 @@ Campaign communication coordinators need to understand not only what the issues 
 
 Political officials already in office need continuous awareness of constituent issues between election cycles. They want to monitor issue shifts, track how local concerns are evolving, and understand where dissatisfaction or support is growing. Their goal is to remain connected to the community and respond before issues escalate into larger political or governance problems.
 
+### Administrator
+
+Administrators are responsible for configuring the workspace so campaign users can operate safely and consistently. They need tools to define and maintain reusable segment categories used in analysis, create users, assign privilege groups, and control access to screens and workflows. They also need to identify, classify, and maintain the local source registry for each district so that issue analysis starts from the right set of newspapers, newsletters, community pages, and discussion forums.
+
 ### Secondary Users
 
 Secondary users may include local political consultants, advocacy groups, and party staff supporting candidates in multiple districts. These users benefit from the same issue intelligence workflows but are not the primary audience for the initial MVP.
@@ -85,6 +89,9 @@ Secondary users may include local political consultants, advocacy groups, and pa
 - As a campaign communication coordinator, I want to generate an issue briefing with talking points and follow-up questions so that I can support fast message development.
 - As a campaign communication coordinator, I want to compare multiple message angles for a local issue so that I can tailor communication to different constituent groups.
 - As a political official, I want a continuous view of emerging district issues so that I can stay aligned with constituent concerns between election cycles.
+- As an administrator, I want to create and modify segment categories and allowed values so that analysis and outreach use consistent audience definitions.
+- As an administrator, I want to create users and assign privilege groups so that screen access and workflow permissions are controlled centrally.
+- As an administrator, I want to identify and classify local sources for each district so that analysis reflects the publications, newsletters, and community forums voters actually follow.
 - As a user, I want to save my interactive discussion and return to it later so that ongoing analysis does not get lost between sessions.
 - As a user, I want to create reusable audience segments based on filters and tags so that I can target the right people for emails and texts.
 - As a user, I want to segment audiences by age group, income group, political viewpoint, sex or gender, and occupation group so that outreach can match the realities of different parts of the district.
@@ -103,6 +110,8 @@ Secondary users may include local political consultants, advocacy groups, and pa
 
 - The system must support identifying and storing local sources relevant to a district.
 - Supported source types for MVP should include local newspapers, regional newspapers, town newsletters, municipal or public records pages, and accessible community discussion sources.
+- Administrators must be able to identify, classify, and maintain district-relevant sources manually.
+- District source classification should support both hyperlocal and regional coverage patterns. For example, Maine House District 34 may prioritize Kennebunk Post, The Weekly Sentinel, Times Record, Biddeford-Saco-Old Orchard Beach Courier, town newsletters such as Kennebunk Currents, Facebook groups such as The Village: Arundel, Kennebunk and Kennebunkport, and regional outlets such as Portland Press Herald, The Forecaster, American Journal, and Times Record.
 - Each source should store metadata including:
   - source name
   - source type
@@ -198,11 +207,20 @@ Secondary users may include local political consultants, advocacy groups, and pa
   - engagement level
   - campaign role
   - supporter, donor, volunteer, undecided, or similar campaign tags
+- Administrators must be able to create and modify the normalized segment dimensions and allowed values used in analysis and audience segmentation.
+- Administrator-managed segment dimensions for MVP should include age group, income group, political viewpoint, sex or gender where legally appropriate, and occupation group.
 - Occupation group examples may include white collar professionals, blue collar workers, stay-at-home parents, teachers, healthcare workers, small business owners, and retirees.
 - Users must be able to save, edit, and reuse segment definitions.
 - Segment definitions must be transparent and editable.
 
-### 11. Audience Records
+### 11. Segment Administration
+
+- Administrators must be able to create, edit, activate, deactivate, and archive reusable segment definitions used across the product.
+- Segment administration must support value labels, descriptions, display order, status, and effective dates where needed.
+- Segment administration should preserve an audit trail of who changed a segment definition and when.
+- Changes to administrator-managed segment definitions must not silently invalidate saved audience segments; the system should surface impacted saved segments for review.
+
+### 12. Audience Records
 
 - The MVP must support lightweight audience records through import or manual entry.
 - Audience records may include:
@@ -220,20 +238,29 @@ Secondary users may include local political consultants, advocacy groups, and pa
   - consent status
 - Demographic and occupation fields should support normalized categories rather than only free text.
 
-### 12. Event Turnout Support
+### 13. Event Turnout Support
 
 - Users must be able to create campaign events such as rallies, fundraisers, canvassing launches, and volunteer meet-ups.
 - Each event should store title, description, location, date or time, target geography, turnout goal, related issues, and linked audience segments.
 - The system must support localized messaging recommendations for event recruitment based on district issues and selected segments.
 
-### 13. Outreach Drafting Support
+### 14. Outreach Drafting Support
 
 - Users must be able to generate draft email and text content for an event, issue, or audience segment.
 - Outreach drafts should support localized references such as town, neighborhood, municipality, district, and relevant issue context.
 - Users should be able to save multiple draft variants and mark a preferred version.
 - The MVP may stop at draft generation and export rather than direct delivery through messaging platforms.
 
-### 14. Search, Filters, and Feedback
+### 15. User and Privilege Administration
+
+- Administrators must be able to create, edit, deactivate, and reactivate users.
+- Administrators must be able to assign one or more privilege groups to a user.
+- Privilege groups must be used to control access to specific screens and major workflows.
+- The MVP must support privilege-aware access to at least district management, source registry, segment administration, audience records, and user administration screens.
+- Privilege groups should support named permission bundles rather than only per-user overrides.
+- The system should record an audit trail for user creation, privilege assignment changes, and account status changes.
+
+### 16. Search, Filters, and Feedback
 
 - Users must be able to search issues, sources, and keywords.
 - Users must be able to filter by district, municipality, source type, source leaning, issue category, viewpoint, date range, and trend status.
@@ -276,6 +303,9 @@ Core data structures should include:
 - `audience_segment` document
   - Purpose: stores reusable segment definitions for analysis and turnout messaging.
   - Key fields: `segmentId`, `districtId`, `name`, `description`, `filters`, `tags[]`, `estimatedAudienceSize`, `createdBy`, `createdAt`, `updatedAt`, `isArchived`.
+- `segment_definition` document
+  - Purpose: stores administrator-managed segment dimensions and allowed values used by analysis and targeting workflows.
+  - Key fields: `segmentDefinitionId`, `dimensionKey`, `name`, `description`, `values[]`, `valueType`, `displayOrder`, `status`, `effectiveFrom`, `effectiveTo`, `createdBy`, `updatedBy`, `createdAt`, `updatedAt`.
 - `audience_record` document
   - Purpose: stores a lightweight contact or constituent profile for targeting.
   - Key fields: `audienceRecordId`, `districtIds[]`, `fullName`, `municipality`, `zipCode`, `ageGroup`, `incomeGroup`, `politicalViewpoint`, `sexOrGender`, `occupationGroup`, `issueInterests[]`, `engagementLevel`, `campaignTags[]`, `contactChannels`, `consent`, `sourceSystem`, `segmentIds[]`, `createdAt`, `updatedAt`.
@@ -324,7 +354,7 @@ Modeling guidance for Oracle Autonomous AI JSON Database:
 - The system must clearly separate public source content from generated analysis.
 - The system should avoid storing unnecessary personal data.
 - Audience records and contact data must be handled in a way that supports campaign consent and outreach compliance requirements.
-- Access to user-created segments, discussion history, and audience records should be permission-aware if multi-user support is introduced.
+- Access to user-created segments, discussion history, audience records, source administration, and user administration must be permission-aware in the MVP.
 
 ### Explainability and Auditability
 
@@ -345,21 +375,24 @@ Modeling guidance for Oracle Autonomous AI JSON Database:
 
 ## Design & User Interaction
 
-CivicSignal should feel practical, fast, and trustworthy. The user experience should emphasize clarity over complexity. Users should be able to move from district setup to issue understanding to action without needing to interpret dense analytics or raw data dumps. There are two major user types: an administrative user who 
+CivicSignal should feel practical, fast, and trustworthy. The user experience should emphasize clarity over complexity. Users should be able to move from district setup to issue understanding to action without needing to interpret dense analytics or raw data dumps. There are two major user modes in the MVP: administrator workflows that configure users, source registries, and segment definitions, and campaign workflows that consume those configurations to analyze issues and prepare outreach.
 
 The main user flow should be:
 
 1. Create or select a district.
-2. Review and curate district sources.
-3. Allow the system to ingest and analyze content.
-4. Review the district dashboard for top and trending issues.
-5. Open a district briefing or target issue analysis.
-6. Save the discussion for later if deeper analysis is needed.
-7. Create audience segments and generate localized outreach drafts for relevant events or issues.
+2. If needed, an administrator creates users, assigns privilege groups, and configures segment definitions.
+3. Review and curate district sources.
+4. Allow the system to ingest and analyze content.
+5. Review the district dashboard for top and trending issues.
+6. Open a district briefing or target issue analysis.
+7. Save the discussion for later if deeper analysis is needed.
+8. Create audience segments and generate localized outreach drafts for relevant events or issues.
 
 Core screens for MVP should include:
 
 - District Dashboard
+- User Administration
+- Privilege Group Administration
 - Source Registry
 - Issue Feed
 - Trending Topics View
@@ -367,6 +400,7 @@ Core screens for MVP should include:
 - Target Issue Analysis View
 - Discussion History
 - Audience Segments
+- Segment Definition Administration
 - Events and Turnout Messaging
 - Candidate Context Settings
 
@@ -387,6 +421,7 @@ Links to Wireframes/Mockups: [Insert Link Here]
 The MVP should include:
 
 - district setup and source curation
+- administrator-managed district source classification
 - source ingestion for accessible local sources
 - issue extraction and clustering
 - trending topic detection
@@ -395,8 +430,10 @@ The MVP should include:
 - viewpoint comparison
 - discussion persistence
 - lightweight audience records
+- administrator-managed segment definitions
 - audience segmentation
 - event creation
+- user creation and privilege-group assignment
 - localized outreach draft generation
 
 ### Phase 2
@@ -455,4 +492,4 @@ Longer-term roadmap items may include:
 | Should outreach draft generation remain export-only in the MVP, or should direct delivery integrations be considered? |  |  |
 | What level of human review is required before AI-generated campaign messaging is used operationally? |  |  |
 | Which normalized category sets should be used for age group, income group, and occupation group? |  |  |
-| What permissions model is needed if multiple campaign staff members use the same district workspace? |  |  |
+| What default privilege groups should ship in the MVP, and which screens should each group access? |  |  |
