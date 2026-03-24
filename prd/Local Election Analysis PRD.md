@@ -240,6 +240,71 @@ Secondary users may include local political consultants, advocacy groups, and pa
 - Users must be able to mark sources or issues as relevant, irrelevant, duplicate, or misclassified.
 - The system should store this feedback for future tuning.
 
+## Data Structures
+
+The MVP data model should be designed for Oracle Autonomous AI JSON Database and should treat the primary application records as JSON documents rather than a strictly relational schema. Document boundaries should follow product workflows: embed small, bounded substructures that are usually loaded together, and use document references for large, growing, or independently queried records.
+
+Core data structures should include:
+
+- `district` document
+  - Purpose: stores the political geography and workspace boundary for analysis.
+  - Key fields: `districtId`, `state`, `officeType`, `districtName`, `districtNumber`, `municipalities[]`, `zipCodes[]`, `neighborhoods[]`, `notes`, `status`, `createdBy`, `createdAt`, `updatedAt`.
+- `source` document
+  - Purpose: stores a curated local source and its classification metadata.
+  - Key fields: `sourceId`, `districtIds[]`, `name`, `sourceType`, `url`, `platform`, `coverage.municipalities[]`, `coverage.zipCodes[]`, `coverage.districts[]`, `politicalLeaning`, `framingTendency`, `trustScore`, `confidenceScore`, `updateFrequency`, `ingestionMethod`, `isActive`, `tags[]`, `createdAt`, `updatedAt`.
+- `source_item` document
+  - Purpose: stores an ingested article, post, newsletter item, meeting note, or other source artifact.
+  - Key fields: `sourceItemId`, `sourceId`, `districtIds[]`, `title`, `canonicalUrl`, `publishedAt`, `ingestedAt`, `author`, `summary`, `excerpt`, `rawText`, `contentHash`, `mediaType`, `language`, `entities`, `locations`, `topics`, `processingStatus`, `classification`.
+- `ingestion_run` document
+  - Purpose: tracks fetch and processing activity for operational visibility.
+  - Key fields: `ingestionRunId`, `sourceId`, `startedAt`, `completedAt`, `status`, `itemsFetched`, `itemsCreated`, `itemsUpdated`, `errorCount`, `errors[]`, `triggerType`, `runMetadata`.
+- `issue_cluster` document
+  - Purpose: represents a district-level issue created by grouping related mentions across sources.
+  - Key fields: `issueId`, `districtId`, `title`, `slug`, `summary`, `category`, `status`, `priorityScore`, `trendScore`, `energyScore`, `firstSeenAt`, `lastSeenAt`, `sourceCount`, `mentionCount`, `geographicSpread`, `viewpointSummary`, `candidateImpact`, `topSourceItemIds[]`, `tags[]`, `createdAt`, `updatedAt`.
+- `issue_mention` document
+  - Purpose: stores an individual issue signal extracted from a single source item.
+  - Key fields: `issueMentionId`, `issueId`, `sourceItemId`, `districtId`, `sourceId`, `mentionedAt`, `excerpt`, `summary`, `municipality`, `neighborhood`, `viewpoint`, `sentiment`, `intensityScore`, `isDuplicate`, `confidenceScore`, `evidence`.
+- `briefing` document
+  - Purpose: stores a generated district briefing snapshot.
+  - Key fields: `briefingId`, `districtId`, `title`, `generatedAt`, `generatedBy`, `timeRange`, `topIssues[]`, `viewpointComparisons[]`, `followUpQuestions[]`, `suggestedNextSteps[]`, `candidateNotes`, `sourceReferences[]`, `markdownBody`, `version`, `status`.
+- `issue_analysis` document
+  - Purpose: stores a deep-dive report for a specific issue.
+  - Key fields: `issueAnalysisId`, `issueId`, `districtId`, `generatedAt`, `generatedBy`, `issueSummary`, `timeline[]`, `sourceBreakdown[]`, `viewpointComparison`, `broadVsLoudMinorityAssessment`, `candidateRiskAssessment`, `talkingPoints[]`, `campaignActions[]`, `supportingSourceItemIds[]`, `markdownBody`.
+- `discussion_thread` document
+  - Purpose: stores a saved interactive analysis conversation.
+  - Key fields: `threadId`, `districtId`, `issueId`, `briefingId`, `title`, `status`, `participants[]`, `messages[]`, `linkedArtifactIds[]`, `notes`, `createdAt`, `updatedAt`, `archivedAt`.
+- `audience_segment` document
+  - Purpose: stores reusable segment definitions for analysis and turnout messaging.
+  - Key fields: `segmentId`, `districtId`, `name`, `description`, `filters`, `tags[]`, `estimatedAudienceSize`, `createdBy`, `createdAt`, `updatedAt`, `isArchived`.
+- `audience_record` document
+  - Purpose: stores a lightweight contact or constituent profile for targeting.
+  - Key fields: `audienceRecordId`, `districtIds[]`, `fullName`, `municipality`, `zipCode`, `ageGroup`, `incomeGroup`, `politicalViewpoint`, `sexOrGender`, `occupationGroup`, `issueInterests[]`, `engagementLevel`, `campaignTags[]`, `contactChannels`, `consent`, `sourceSystem`, `segmentIds[]`, `createdAt`, `updatedAt`.
+- `event` document
+  - Purpose: stores campaign events and their turnout context.
+  - Key fields: `eventId`, `districtId`, `title`, `description`, `eventType`, `location`, `municipality`, `startAt`, `endAt`, `turnoutGoal`, `relatedIssueIds[]`, `targetSegmentIds[]`, `status`, `notes`, `createdBy`, `createdAt`, `updatedAt`.
+- `outreach_draft` document
+  - Purpose: stores generated outreach content tied to an event, issue, or segment.
+  - Key fields: `draftId`, `districtId`, `eventId`, `issueId`, `segmentId`, `channel`, `tone`, `localReferences[]`, `variants[]`, `preferredVariantId`, `generationInputs`, `status`, `createdBy`, `createdAt`, `updatedAt`.
+- `user` document
+  - Purpose: stores application users and their district access.
+  - Key fields: `userId`, `name`, `email`, `status`, `districtIds[]`, `privilegeGroupIds[]`, `preferences`, `lastLoginAt`, `createdAt`, `updatedAt`.
+- `privilege_group` document
+  - Purpose: stores reusable permissions for screen and capability access.
+  - Key fields: `privilegeGroupId`, `name`, `description`, `permissions[]`, `createdAt`, `updatedAt`.
+- `feedback_annotation` document
+  - Purpose: stores user feedback on source and issue quality.
+  - Key fields: `feedbackId`, `districtId`, `targetType`, `targetId`, `feedbackType`, `comment`, `createdBy`, `createdAt`, `resolutionStatus`.
+- `audit_event` document
+  - Purpose: stores key user and system actions for traceability.
+  - Key fields: `auditEventId`, `actorType`, `actorId`, `action`, `targetType`, `targetId`, `districtId`, `timestamp`, `details`.
+
+Modeling guidance for Oracle Autonomous AI JSON Database:
+
+- Use embedded arrays for bounded values that are naturally part of a parent record, such as `municipalities[]`, `zipCodes[]`, `filters`, `messages[]`, or `variants[]`.
+- Use separate referenced documents for high-volume records such as `source_item`, `issue_mention`, `briefing`, `issue_analysis`, and `audit_event`.
+- Add indexes for high-selectivity JSON fields that drive the main workflows, especially `districtId`, `districtIds`, `sourceId`, `issueId`, `publishedAt`, `generatedAt`, `trendScore`, `politicalLeaning`, `status`, and `tags`.
+- Preserve raw source text and generated outputs separately so the system can support explainability, regeneration, and audit review.
+
 ## Non-Functional Requirements
 
 ### Performance

@@ -1,6 +1,7 @@
 PRD Prompt
 Act as an experienced Product Manager drafting a Product Requirements Document (PRD) for a new software product for local election analysis and candidate campaign support.
 Your goal is to create a clear, concise, and comprehensive PRD based on the information I provide. The PRD should be detailed enough to guide a coding agent in understanding what needs to be built. Format the entire document using standard Markdown (.md) syntax.
+Include a dedicated `Data Structures` section in the PRD that lists the core JSON document types, their purpose, and the most important fields needed to support the application. Assume the database is Oracle Autonomous AI JSON Database, so favor document-oriented structures, embedded subdocuments where appropriate, and explicit references between major entities.
 Here is the foundational information and synthesized insights from my research:
 
 **User Pain Points Summary:**
