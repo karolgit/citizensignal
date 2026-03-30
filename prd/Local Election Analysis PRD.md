@@ -91,7 +91,9 @@ Secondary users may include local political consultants, advocacy groups, and pa
 - As a political official, I want a continuous view of emerging district issues so that I can stay aligned with constituent concerns between election cycles.
 - As an administrator, I want to create and modify segment categories and allowed values so that analysis and outreach use consistent audience definitions.
 - As an administrator, I want to create users and assign privilege groups so that screen access and workflow permissions are controlled centrally.
-- As an administrator, I want to identify and classify local sources for each district so that analysis reflects the publications, newsletters, and community forums voters actually follow.
+- As an administrator, I want to create districts for users to assign sources. 
+- As a source manager, I want to identify and classify local sources for districts so that analysis reflects the publications, newsletters, and community forums voters actually follow.
+- As a source manager, I want to be able to classify a source within a spectrum of lean left or lean right. 
 - As a user, I want to save my interactive discussion and return to it later so that ongoing analysis does not get lost between sessions.
 - As a user, I want to create reusable audience segments based on filters and tags so that I can target the right people for emails and texts.
 - As a user, I want to segment audiences by age group, income group, political viewpoint, sex or gender, and occupation group so that outreach can match the realities of different parts of the district.
@@ -102,15 +104,16 @@ Secondary users may include local political consultants, advocacy groups, and pa
 
 ### 1. District Management
 
-- Users must be able to create and manage one or more districts.
+- Administrators must be able to create and manage one or more districts.
 - A district must support fields for state, office type, district name or number, municipalities, ZIP codes, and notes.
 - Users must be able to view the sources and issues associated with a district.
 
 ### 2. Source Discovery and Classification
 
-- The system must support identifying and storing local sources relevant to a district.
+- The system must support identifying and storing local sources relevant to one or more districts. 
 - Supported source types for MVP should include local newspapers, regional newspapers, town newsletters, municipal or public records pages, and accessible community discussion sources.
-- Administrators must be able to identify, classify, and maintain district-relevant sources manually.
+- Source managers must be able to identify, classify, and maintain district-relevant sources manually.
+- Source manager must be able to curate sources manually by adding, removing, flagging, or editing them.
 - District source classification should support both hyperlocal and regional coverage patterns. For example, Maine House District 34 may prioritize Kennebunk Post, The Weekly Sentinel, Times Record, Biddeford-Saco-Old Orchard Beach Courier, town newsletters such as Kennebunk Currents, Facebook groups such as The Village: Arundel, Kennebunk and Kennebunkport, and regional outlets such as Portland Press Herald, The Forecaster, American Journal, and Times Record.
 - Each source should store metadata including:
   - source name
@@ -122,13 +125,15 @@ Secondary users may include local political consultants, advocacy groups, and pa
   - political leaning or framing tendency when inferable
   - confidence or trust score
   - update frequency
-- Users must be able to curate sources manually by adding, removing, flagging, or editing them.
+  - retention period
 
-### 3. Content Ingestion
 
-- The system must ingest source content on a recurring basis where technically and legally accessible.
+### 3. Content Ingestion & Vector Creationg
+
+- The system must ingest source content to create vectors. This will happen on a recurring basis where technically and legally accessible. 
 - Ingested source items should include title, publication date, URL, summary, excerpt, and raw text when available.
 - The system must track ingestion freshness and timestamps.
+[comment]: # Joe Tilley suggested using FireCrawl as a web scraper and AI prep engine
 
 ### 4. Issue Extraction and Clustering
 
